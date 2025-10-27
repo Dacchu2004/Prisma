@@ -21,6 +21,14 @@ model User {
   preferences  Json
   writtenPosts Post[]  @relation("WrittenPosts")
   favPosts     Post[]  @relation("FavPosts")
+  userPreferences UserPreferences?
+}
+
+model UserPreferences{
+  id       String   @id @default(uuid())
+  emailUpdates Boolean
+  user   User     @relation(fields: [userId], references: [id])
+  userId String   @unique
 }
 
 model Post {
