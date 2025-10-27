@@ -14,12 +14,13 @@ datasource db {
 }
 
 model User {
-  id          String  @id @default(uuid())
-  name        String
-  email       String
-  isAdmin     Boolean
-  preferences Json
-  posts       Post[]
+  id           String  @id @default(uuid())
+  name         String
+  email        String
+  isAdmin      Boolean
+  preferences  Json
+  writtenPosts Post[]  @relation("WrittenPosts")
+  favPosts     Post[]  @relation("FavPosts")
 }
 
 model Post {
@@ -28,5 +29,7 @@ model Post {
   createdAt DateTime
   updatedAt DateTime
   authorId  String
-  author    User     @relation(fields: [authorId], references: [id])
+  author    User     @relation("WrittenPosts", fields: [authorId], references: [id])
+  favById   String?
+  favBy     User?    @relation("FavPosts", fields: [favById], references: [id])
 }
