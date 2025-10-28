@@ -4,29 +4,30 @@ const prisma =new PrismaClient()
 
 async function main(){
     await prisma.user.deleteMany() // to clear previous data
-    const user = await prisma.user.create({
-        data:{
+    const users = await prisma.user.createMany({
+        data:[
+        {
             name:"Dacchu",
             email:"dacchu@test.com",
             age:21,
-            userPreference:{
-                create:{// craete function
-                    emailUpdates:true,
-                }
-            }
-        },
+        },{
+            name:"Deepi",
+            email:"deepi@test.com",
+            age:16,
+        }
+    ]
         // include:{ //to include the userprefernce
         //     userPreference:true,
         // },
 
         // for selecting only some specific properties v can use select
-        select:{
-            name: true,
-            userPreference:{ select:{id:true}}
-        },
+        // select:{
+        //     name: true,
+        //     userPreference:{ select:{id:true}}
+        // },
 
     })
-    console.log(user)
+    console.log(users)
 }
 
 main()
