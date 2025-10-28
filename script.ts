@@ -15,9 +15,16 @@ async function main(){
                 }
             }
         },
-        include:{ //to include the userprefernce
-            userPreference:true,
+        // include:{ //to include the userprefernce
+        //     userPreference:true,
+        // },
+
+        // for selecting only some specific properties v can use select
+        select:{
+            name: true,
+            userPreference:{ select:{id:true}}
         },
+
     })
     console.log(user)
 }
