@@ -56,22 +56,68 @@ const prisma =new PrismaClient()
 // }
 
 //Find Many
-async function main(){
-    const user = await prisma.user.findMany({
-        where:{
-            name: "Dacchu",
-        },
+// async function main(){
+//     const user = await prisma.user.findMany({
+//         where:{
+//             name: "Dacchu",
+//         },
         // distinct: ["age"], // to get distinct ages
-        take: 1, // to limit the number of results
-        skip: 0, // to skip some results
-        orderBy:{
-            age: 'desc', // to order the results
+//         take: 1, // to limit the number of results
+//         skip: 0, // to skip some results
+//         orderBy:{
+//             age: 'desc', // to order the results
+//         },
+//     })
+
+//     console.log(user)
+// }
+
+
+//Client Update
+// async function main(){
+//     const user = await prisma.user.update({
+//         where:{
+//             email: "dacchu@test.com",
+//         },
+//         data:{
+//             email: "dacchu@test1.com", //updating email
+//         },
+//     })
+
+//     console.log(user)
+// }
+
+//UpdateMany
+// async function main(){
+//     const user = await prisma.user.updateMany({
+//         where:{
+//             name: "Dacchu",
+//         },
+//         data:{
+//             name: "Dharsan", //updating name for all users with name Dacchu
+//         },
+//     })
+
+//     console.log(user)
+// }
+
+
+//Update age
+async function main(){
+    const user = await prisma.user.update({
+        where:{
+            email: "dacchu@teat1.com", //when v do an single update then it must be unique field and name is not unique
+        },
+        data:{
+            age: {increment: 5}, // incrementing age by 5
+            // age: {decrement: 5}, // decrementing age by 5
+            // age: {multiply: 2}, // multiplying age by 2
+            // age: {divide: 2}, // dividing age by 2
         },
     })
 
     console.log(user)
 }
-
 
 main()
     .catch(e=>{
