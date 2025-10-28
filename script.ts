@@ -3,7 +3,7 @@ const prisma =new PrismaClient()
 // above code will alllow us to access our PrismaClient
 
 async function main(){
-    const users= await prisma.user.findMany()
+    const users= await prisma.user.deleteMany()
     console.log(users)
 }
 
