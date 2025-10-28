@@ -3,8 +3,15 @@ const prisma =new PrismaClient()
 // above code will alllow us to access our PrismaClient
 
 async function main(){
-    const users= await prisma.user.deleteMany()
-    console.log(users)
+    const user = await prisma.user.create({
+        data:{
+            name:"Dacchu",
+            email:"dacchu@test.com",
+            age:21,
+
+        },
+    })
+    console.log(user)
 }
 
 main()
