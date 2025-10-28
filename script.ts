@@ -101,9 +101,9 @@ const prisma =new PrismaClient()
 //     console.log(user)
 // }
 
-
 //Update age
 async function main(){
+    
     const user = await prisma.user.update({
         where:{
             email: "dacchu@teat1.com", //when v do an single update then it must be unique field and name is not unique
